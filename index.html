@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Drink App</title>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/app/styles/styles.css">
+  <!-- endinject -->
+</head>
+
+<body ng-controller="DrinkMakerController as drinkMakerCtrl">
+  <div class="container">
+    <div class="jumbotron jumbotron-fluid" id="jumbotron">
+      <h1>Your mobile bartender</h1>
+      <p>"Let's make a drink...It's 5 o'clock somewhere!"</p>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="input-group" id="inputButton">
+          <input type="text" class="form-control" ng-model="drinkMakerCtrl.searchTerm" placeholder="search type of drink or alcohol">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="drinkMakerCtrl.searchForDrinks(drinkMakerCtrl.searchTerm)">Cheers!</button>
+          </span>
+        </div>
+        <div class="list-group">
+          <button type="button" class="list-group-item" ng-repeat="drink in drinkMakerCtrl.results" 
+          ng-mouseenter="drinkMakerCtrl.getDrinkById(drink.idDrink)" ng-model="hideOutput">{{drink.strDrink}}</button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              What's in the drink?
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-2">
+                <img class="img-responsive" ng-src={{drinkMakerCtrl.selectedDrink.strDrinkThumb}} alt="" >
+              </div>
+              <div clas="col-xs-10" id="outputInfo" ng-hide="hideOutput">
+                <h2>{{drinkMakerCtrl.selectedDrink.strDrink}}</h2>
+                <div id="glass"><label>Glass Type:</label></div>
+                <h4>{{drinkMakerCtrl.selectedDrink.strGlass}}</h4>
+                <div id="drinkinfo"><label>Ingredients:</label></div>
+                <ul>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure1}} {{drinkMakerCtrl.selectedDrink.strIngredient1}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure2}} {{drinkMakerCtrl.selectedDrink.strIngredient2}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure3}} {{drinkMakerCtrl.selectedDrink.strIngredient3}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure4}} {{drinkMakerCtrl.selectedDrink.strIngredient4}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure5}} {{drinkMakerCtrl.selectedDrink.strIngredient5}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure6}} {{drinkMakerCtrl.selectedDrink.strIngredient6}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure7}} {{drinkMakerCtrl.selectedDrink.strIngredient7}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure8}} {{drinkMakerCtrl.selectedDrink.strIngredient8}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure9}} {{drinkMakerCtrl.selectedDrink.strIngredient9}}</h4>
+                    <h4>{{drinkMakerCtrl.selectedDrink.strMeasure10}} {{drinkMakerCtrl.selectedDrink.strIngredient10}}</h4>
+                </ul>
+                <div id="instructions">
+                    <h4>{{drinkMakerCtrl.selectedDrink.strInstructions}}</h4>
+                    </div>
+              </div>
+            </div>
+            <!--<hr />
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="well"></div>
+              </div>
+              <div class="col-xs-4">
+                <div class="well"></div>
+              </div>
+              <div class="col-xs-4">
+                <div class="well"></div>
+              </div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+    <!-- inject:js --> 
+      <script src="/app/app.js"></script>
+     <script src="/app/core/drinkMaker.factory.js"></script>
+     <script src="/app/mainController/drinkMaker.controller.js"></script>
+     <!-- endinject -->
+</body>
+
+</html>
